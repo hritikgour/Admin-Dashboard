@@ -1,0 +1,101 @@
+/* Top Navbar Styles */
+.top-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 12px 24px;
+  color: #fff;
+  border-bottom: 1px solid #5c0505;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Left: logo + search */
+.top-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #8f0505;
+}
+
+/* Search bar */
+.top-search {
+  width: 280px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: solid color #8f0505;
+  background-color: white;
+  color: #29252588;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.top-search::placeholder {
+  color: #ffe5e5;
+}
+
+.top-search:focus {
+  
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+}
+
+/* Right: notification + profile */
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Notification icon */
+.top-icon {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.top-icon:hover {
+  color: #ffd700;
+}
+
+/* Admin profile */
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.admin-profile:hover {
+  background-color: rgba(255,255,255,0.15);
+}
+
+.profile-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .top-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .top-search {
+    width: 100%;
+  }
+}
