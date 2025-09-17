@@ -11,6 +11,8 @@
   top: 0;
   z-index: 1000;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+   
+  color: black; /* ✅ ab text dikhai dega */
 }
 
 /* Left: logo + search */
@@ -31,16 +33,16 @@
 .top-search {
   width: 280px;
   padding: 6px 14px;
+  border-style: solid;
+  border-color: #3d3b3b;
   border-radius: 8px;
-  border: solid color #8f0505;
   background-color: white;
-  color: #29252588;
   outline: none;
   transition: all 0.3s;
 }
 
 .top-search::placeholder {
-  color: #ffe5e5;
+  color: rgb(95, 89, 89);
 }
 
 .top-search:focus {
@@ -48,35 +50,28 @@
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
 }
 
-/* Right: notification + profile */
 .top-right {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 15px; /* icons ke beech ka gap */
 }
 
-/* Notification icon */
 .top-icon {
-  width: 26px;
-  height: 26px;
+  font-size: 22px;
   cursor: pointer;
-  transition: color 0.3s;
 }
 
-.top-icon:hover {
-  color: #ffd700;
-}
-
-/* Admin profile */
 .admin-profile {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 8px;
-  transition: background 0.3s;
 }
+
+.profile-icon {
+  font-size: 22px;
+}
+
 
 .admin-profile:hover {
   background-color: rgba(255,255,255,0.15);
