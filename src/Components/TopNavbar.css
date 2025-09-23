@@ -3,62 +3,68 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
-  padding: 12px 24px;
-  color: #fff;
-  border-bottom: 1px solid #5c0505;
+  background-color: #ffffff;
+  padding: 14px 28px;
+  border-bottom: 2px solid #950606;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-   
-  color: black; /* ✅ ab text dikhai dega */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 /* Left: logo + search */
 .top-left {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 /* Logo */
 .logo {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  color: #8f0505;
+  color: #950606; /* brand red */
+  letter-spacing: 0.5px;
 }
 
 /* Search bar */
 .top-search {
   width: 280px;
-  padding: 6px 14px;
-  border-style: solid;
-  border-color: #3d3b3b;
+  padding: 8px 14px;
+  border: 1.5px solid #ccc;
   border-radius: 8px;
-  background-color: white;
+  background-color: #fff;
   outline: none;
-  transition: all 0.3s;
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 .top-search::placeholder {
-  color: rgb(95, 89, 89);
+  color: #777;
 }
 
 .top-search:focus {
-  
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  border-color: #950606;
+  box-shadow: 0 0 6px rgba(149, 6, 6, 0.3);
 }
 
+/* Right: notifications + profile */
 .top-right {
   display: flex;
   align-items: center;
-  gap: 15px; /* icons ke beech ka gap */
+  gap: 18px;
 }
 
 .top-icon {
-  font-size: 22px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.top-icon:hover {
+  color: #950606;
 }
 
 .admin-profile {
@@ -66,20 +72,31 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-.profile-icon {
-  font-size: 22px;
-}
-
-
-.admin-profile:hover {
-  background-color: rgba(255,255,255,0.15);
+.admin-profile span {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
 }
 
 .profile-icon {
   width: 22px;
   height: 22px;
+  color: #333;
+}
+
+.admin-profile:hover {
+  background-color: #950606;
+  color: #fff;
+}
+
+.admin-profile:hover .profile-icon,
+.admin-profile:hover span {
+  color: #fff;
 }
 
 /* Responsive */
