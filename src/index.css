@@ -3,7 +3,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #242424;
+  background-color: whitesmoke;
   color: rgba(255,255,255,0.87);
 }
 

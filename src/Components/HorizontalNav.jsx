@@ -20,7 +20,7 @@ const navItems = [
   { title: "Transactions", url: "/transactions", icon: CreditCard },
   { title: "Loans", url: "/loans", icon: DollarSign },
   { title: "Support", url: "/support", icon: HelpCircle },
-  { title: "Reports", url: "/reports", icon: BarChart3 },
+  { title: "Investment products", url: "/investment_products", icon: BarChart3 },
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
