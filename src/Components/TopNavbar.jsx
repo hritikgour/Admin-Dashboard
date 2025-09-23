@@ -1,15 +1,16 @@
-// src/Components/TopNavbar.jsx
+// src/components/TopNavbar.jsx
 import React from "react";
 import { Bell, User } from "lucide-react";
+import logo from "../assets/logo.png";
 import "./TopNavbar.css";
 
 export default function TopNavbar() {
   return (
     <div className="top-navbar">
-      
-      {/* Left: Logo + Search */}
+      {/* Left: logo + search */}
       <div className="top-left">
-        <h1 className="logo">NeoBank Admin</h1>
+        <img src={logo} alt="NeoBank Logo" className="top-logo" />
+        <h1 className="logo-text">NeoBank Admin</h1>
         <input
           type="text"
           placeholder="Search User or Transaction..."
@@ -17,7 +18,7 @@ export default function TopNavbar() {
         />
       </div>
 
-      {/* Right: Notification + Profile */}
+      {/* Right: notifications + profile */}
       <div className="top-right">
         <Bell className="top-icon" />
         <div className="admin-profile">
@@ -25,7 +26,6 @@ export default function TopNavbar() {
           <span>Admin</span>
         </div>
       </div>
-
     </div>
   );
 }

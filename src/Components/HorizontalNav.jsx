@@ -19,6 +19,7 @@ const navItems = [
   { title: "KYC", url: "/kyc", icon: FileText },
   { title: "Transactions", url: "/transactions", icon: CreditCard },
   { title: "Loans", url: "/loans", icon: DollarSign },
+  { title: "Card", url: "/card", icon: CreditCard },   // ✅ fixed here
   { title: "Support", url: "/support", icon: HelpCircle },
   { title: "Reports", url: "/reports", icon: BarChart3 },
   { title: "Settings", url: "/settings", icon: Settings },
@@ -33,6 +34,7 @@ export default function HorizontalNav() {
           <NavLink
             key={item.title}
             to={item.url}
+            end
             className={({ isActive }) =>
               `nav-link ${isActive ? "active" : ""}`
             }
