@@ -582,3 +582,13 @@ th {
   padding: 6px 14px;
   border-radius: 4px;
 }
+/* Simple table formatting */
+table, th, td {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+}
