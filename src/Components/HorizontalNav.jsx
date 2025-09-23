@@ -9,7 +9,8 @@ import {
   DollarSign,
   HelpCircle,
   BarChart3,
-  Settings
+  Settings,
+  Wallet,
 } from "lucide-react";
 import "./HorizontalNav.css";
 
@@ -18,10 +19,12 @@ const navItems = [
   { title: "Users", url: "/users", icon: Users },
   { title: "KYC", url: "/kyc", icon: FileText },
   { title: "Transactions", url: "/transactions", icon: CreditCard },
+  {title: "DepositManagement",url: "/DepositManagement",icon: Wallet},
   { title: "Loans", url: "/loans", icon: DollarSign },
   { title: "Support", url: "/support", icon: HelpCircle },
   { title: "Reports", url: "/reports", icon: BarChart3 },
   { title: "Settings", url: "/settings", icon: Settings },
+  
 ];
 
 export default function HorizontalNav() {
