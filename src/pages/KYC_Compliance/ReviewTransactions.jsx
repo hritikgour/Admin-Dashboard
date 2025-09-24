@@ -15,7 +15,13 @@ export default function ReviewTransactions() {
         { type: "PAN", url: "https://via.placeholder.com/150" },
       ],
       auditLogs: [
-        { id: 1, action: "Created", user: "Admin1", date: "2025-09-18 10:00", remark: "KYC started" },
+        {
+          id: 1,
+          action: "Created",
+          user: "Admin1",
+          date: "2025-09-18 10:00",
+          remark: "KYC started",
+        },
       ],
       notes: ["Initial check pending"],
     },
@@ -27,7 +33,13 @@ export default function ReviewTransactions() {
       note: "Verified",
       docs: [{ type: "Passport", url: "https://via.placeholder.com/150" }],
       auditLogs: [
-        { id: 1, action: "Approved", user: "Admin2", date: "2025-09-17 12:00", remark: "Verified" },
+        {
+          id: 1,
+          action: "Approved",
+          user: "Admin2",
+          date: "2025-09-17 12:00",
+          remark: "Verified",
+        },
       ],
       notes: ["Documents verified"],
     },
@@ -39,7 +51,13 @@ export default function ReviewTransactions() {
       note: "Invalid Docs",
       docs: [],
       auditLogs: [
-        { id: 1, action: "Rejected", user: "Admin1", date: "2025-09-16 14:00", remark: "Invalid documents" },
+        {
+          id: 1,
+          action: "Rejected",
+          user: "Admin1",
+          date: "2025-09-16 14:00",
+          remark: "Invalid documents",
+        },
       ],
       notes: ["Documents not valid"],
     },
@@ -62,26 +80,33 @@ export default function ReviewTransactions() {
   );
 
   filteredCases.sort((a, b) =>
-    sort === "latest" ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date)
+    sort === "latest"
+      ? new Date(b.date) - new Date(a.date)
+      : new Date(a.date) - new Date(b.date)
   );
 
   const totalPages = Math.ceil(filteredCases.length / itemsPerPage);
-  const paginatedCases = filteredCases.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+  const paginatedCases = filteredCases.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
 
   const toggleCase = (caseId) =>
     setSelectedCases((prev) =>
-      prev.includes(caseId) ? prev.filter((id) => id !== caseId) : [...prev, caseId]
+      prev.includes(caseId)
+        ? prev.filter((id) => id !== caseId)
+        : [...prev, caseId]
     );
 
   const toggleAll = () =>
     setSelectedCases(
-      selectedCases.length === paginatedCases.length ? [] : paginatedCases.map((c) => c.caseId)
+      selectedCases.length === paginatedCases.length
+        ? []
+        : paginatedCases.map((c) => c.caseId)
     );
 
-  // --- UPDATED bulkAction ---
   const bulkAction = (action) => {
     if (selectedCases.length === 0) return;
-
     setCases((prev) => {
       const updatedCases = prev.map((c) =>
         selectedCases.includes(c.caseId)
@@ -101,16 +126,14 @@ export default function ReviewTransactions() {
             }
           : c
       );
-
-      // Update modal if its case is selected
       if (viewingCase && selectedCases.includes(viewingCase.caseId)) {
-        const updatedCase = updatedCases.find((c) => c.caseId === viewingCase.caseId);
+        const updatedCase = updatedCases.find(
+          (c) => c.caseId === viewingCase.caseId
+        );
         setViewingCase(updatedCase);
       }
-
       return updatedCases;
     });
-
     setSelectedCases([]);
   };
 
@@ -171,26 +194,29 @@ export default function ReviewTransactions() {
   };
 
   return (
-    <div className="vh-100 d-flex flex-column" style={{ overflowX: "hidden" }}>
-      {/* Navbar */}
-      <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#8B0000" }}>
+    <div className="vh-100 d-flex flex-column w-100">
+      {/* Navbar - Full Width */}
+      <nav
+        className="navbar navbar-expand-lg w-100"
+        style={{ backgroundColor: "#900603" }}
+      >
         <div className="container-fluid">
-          <a className="navbar-brand text-white" href="#">
-            Neo Bank
+          <a className="navbar-brand text-white fw-bold m-0" href="#">
+            KYC History
           </a>
         </div>
       </nav>
 
-      {/* Main Content */}
-      <div className="flex-grow-1 overflow-auto p-4 bg-light">
-        <div className="container-fluid">
-          <h2 className="mb-3" style={{ color: "#8B0000" }}>
+      {/* Main Content - Full Width */}
+      <div className="flex-grow-1 overflow-auto bg-light w-100 px-3 py-4">
+        <div className="container-fluid px-0">
+          <h2 className="mb-3" style={{ color: "#900603" }}>
             KYC History
           </h2>
 
           {/* Controls */}
-          <div className="row mb-3">
-            <div className="col-md-4">
+          <div className="row mb-3 g-2 align-items-center">
+            <div className="col-12 col-md-4">
               <input
                 type="text"
                 className="form-control"
@@ -202,7 +228,7 @@ export default function ReviewTransactions() {
                 }}
               />
             </div>
-            <div className="col-md-3">
+            <div className="col-6 col-md-3">
               <select
                 className="form-select"
                 value={filter}
@@ -218,7 +244,7 @@ export default function ReviewTransactions() {
                 <option value="Escalated">Escalated</option>
               </select>
             </div>
-            <div className="col-md-3">
+            <div className="col-6 col-md-3">
               <select
                 className="form-select"
                 value={sort}
@@ -228,16 +254,15 @@ export default function ReviewTransactions() {
                 <option value="oldest">Oldest First</option>
               </select>
             </div>
-            <div className="col-md-2 text-end">
+            <div className="col-12 col-md-2 d-flex justify-content-md-end gap-2 mt-2 mt-md-0">
               <button
-                className="btn btn-danger"
+                className="btn btn-success"
                 onClick={() => bulkAction("Approved")}
               >
                 Bulk Approve
               </button>
               <button
-                className="btn btn-dark ms-2"
-                style={{ backgroundColor: "#8B0000" }}
+                className="btn btn-danger"
                 onClick={() => bulkAction("Rejected")}
               >
                 Bulk Reject
@@ -247,8 +272,8 @@ export default function ReviewTransactions() {
 
           {/* Table */}
           <div className="table-responsive">
-            <table className="table table-bordered table-hover">
-              <thead className="table-light text-center">
+            <table className="table table-bordered table-hover align-middle text-center">
+              <thead style={{ backgroundColor: "#900603", color: "#fff" }}>
                 <tr>
                   <th>
                     <input
@@ -270,7 +295,7 @@ export default function ReviewTransactions() {
               </thead>
               <tbody>
                 {paginatedCases.map((c) => (
-                  <tr key={c.caseId} className="text-center">
+                  <tr key={c.caseId}>
                     <td>
                       <input
                         type="checkbox"
@@ -286,6 +311,8 @@ export default function ReviewTransactions() {
                           ? "text-warning fw-bold"
                           : c.status === "Approved"
                           ? "text-success fw-bold"
+                          : c.status === "Escalated"
+                          ? "text-primary fw-bold"
                           : "text-danger fw-bold"
                       }
                     >
@@ -295,8 +322,8 @@ export default function ReviewTransactions() {
                     <td>{c.note}</td>
                     <td>
                       <button
-                        className="btn btn-sm btn-primary"
-                        style={{ backgroundColor: "#8B0000" }}
+                        className="btn btn-sm text-white"
+                        style={{ backgroundColor: "#900603" }}
                         onClick={() => setViewingCase(c)}
                       >
                         View
@@ -312,7 +339,10 @@ export default function ReviewTransactions() {
           <nav>
             <ul className="pagination justify-content-center">
               <li className={`page-item ${page === 1 ? "disabled" : ""}`}>
-                <button className="page-link" onClick={() => setPage(page - 1)}>
+                <button
+                  className="page-link"
+                  onClick={() => setPage(page - 1)}
+                >
                   Previous
                 </button>
               </li>
@@ -321,8 +351,13 @@ export default function ReviewTransactions() {
                   Page {page} of {totalPages}
                 </span>
               </li>
-              <li className={`page-item ${page === totalPages ? "disabled" : ""}`}>
-                <button className="page-link" onClick={() => setPage(page + 1)}>
+              <li
+                className={`page-item ${page === totalPages ? "disabled" : ""}`}
+              >
+                <button
+                  className="page-link"
+                  onClick={() => setPage(page + 1)}
+                >
                   Next
                 </button>
               </li>
@@ -336,7 +371,7 @@ export default function ReviewTransactions() {
                 <div className="modal-content">
                   <div
                     className="modal-header"
-                    style={{ backgroundColor: "#8B0000", color: "#fff" }}
+                    style={{ backgroundColor: "#900603", color: "#fff" }}
                   >
                     <h5 className="modal-title">
                       Case {viewingCase.caseId} - {viewingCase.name}
@@ -386,7 +421,10 @@ export default function ReviewTransactions() {
                       </li>
                     </ul>
                     <div className="tab-content mt-3">
-                      <div className="tab-pane fade show active" id="documentsTab">
+                      <div
+                        className="tab-pane fade show active"
+                        id="documentsTab"
+                      >
                         {viewingCase.docs.length > 0 ? (
                           <div className="d-flex flex-wrap gap-3">
                             {viewingCase.docs.map((doc, idx) => (
@@ -427,10 +465,11 @@ export default function ReviewTransactions() {
                             id="newNoteInput"
                           />
                           <button
-                            className="btn btn-dark"
-                            style={{ backgroundColor: "#8B0000" }}
+                            className="btn text-white"
+                            style={{ backgroundColor: "#900603" }}
                             onClick={() => {
-                              const val = document.getElementById("newNoteInput").value;
+                              const val =
+                                document.getElementById("newNoteInput").value;
                               addNote(viewingCase.caseId, val);
                               document.getElementById("newNoteInput").value = "";
                             }}
@@ -468,10 +507,11 @@ export default function ReviewTransactions() {
                           placeholder="Enter escalation reason"
                         ></textarea>
                         <button
-                          className="btn btn-dark"
-                          style={{ backgroundColor: "#8B0000" }}
+                          className="btn text-white"
+                          style={{ backgroundColor: "#900603" }}
                           onClick={() => {
-                            const val = document.getElementById("escalateInput").value;
+                            const val =
+                              document.getElementById("escalateInput").value;
                             escalateCase(viewingCase.caseId, val);
                             document.getElementById("escalateInput").value = "";
                           }}

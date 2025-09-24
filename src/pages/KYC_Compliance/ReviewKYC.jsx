@@ -193,37 +193,32 @@ export default function PendingKYC() {
     <div className="container-fluid py-4" style={{ background: "#f9f9f9" }}>
       {/* Header */}
       <div
-        className="p-4 mb-4 rounded text-dark shadow-lg d-flex justify-content-between align-items-center flex-wrap"
-        style={{ border: "2px solid #8B0000", backgroundColor: "#ffffff" }}
+        className="p-4 mb-4 rounded text-white shadow-lg d-flex justify-content-between align-items-center flex-wrap"
+        style={{ border: "2px solid #f8e4e4ff", backgroundColor: "#900603" }}
       >
         <div>
           <h4 className="mb-1 text-uppercase fw-bold d-flex align-items-center">
-            <img
-              src={Logo}
-              alt="KYC Icon"
-              className="me-2"
-              style={{ height: "1.5em", width: "auto", filter: "drop-shadow(0 0 0.5rem rgba(139, 0, 0, 0.4))" }}
-            />
-            KYC Dashboard
+            
+            KYC Approve
           </h4>
-          <small className="text-muted">Efficiently review and manage all KYC submissions</small>
+          <small className="text-white">Efficiently review and manage all KYC submissions</small>
         </div>
         <div className="d-none d-md-block">
-          <FaUserCheck size="2.5rem" color="#8B0000" />
+          <FaUserCheck size="2.5rem" color="#900603" />
         </div>
       </div>
 
       {/* Search Bar */}
       <div className="mb-4">
         <InputGroup className="shadow-sm">
-          <InputGroup.Text style={{ backgroundColor: "#B22222", color: "white", border: "none" }}>
+          <InputGroup.Text style={{ backgroundColor: "#900603", color: "white", border: "none" }}>
             <FaSearch />
           </InputGroup.Text>
           <FormControl
             placeholder="Search by Name, Email, or KYC ID..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            style={{ border: "1px solid #B22222", fontSize: "0.9rem" }}
+            style={{ border: "1px solid #900603", fontSize: "0.9rem" }}
           />
         </InputGroup>
       </div>
@@ -299,7 +294,7 @@ export default function PendingKYC() {
                       <div
                         className="card text-center text-white border-0 h-100 shadow-sm"
                         style={{
-                          backgroundColor: "#B22222",
+                          backgroundColor: "#900603",
                           borderRadius: "12px",
                         }}
                       >
@@ -364,7 +359,7 @@ export default function PendingKYC() {
 
       {/* Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} size="lg" centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#B22222" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#900603" }}>
           <Modal.Title className="text-white">Document Preview</Modal.Title>
         </Modal.Header>
         <Modal.Body className="text-center p-4">

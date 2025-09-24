@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Logo from "../../assets/NeoBank_Logo_01.png";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -27,15 +27,19 @@ export default function Dashboard() {
   return (
     <div className="container-fluid p-0">
       {/* Header */}
-      <div className="bg-white text-dark p-3 d-flex justify-content-between align-items-center "
-        style={{ border: "2px solid #8B0000", backgroundColor: "#8B0000" }}
+      <div
+       className="p-4 mb-4 rounded text-white shadow-lg d-flex justify-content-between align-items-center flex-wrap"
+        style={{ border: "2px solid #f8e4e4ff", backgroundColor: "#900603" }}
       >
         <div>
-          <h5 className="mb-0">KYC & Compliance Dashboard</h5>
+          <h5 className="mb-0">
+                  
+            KYC & Compliance Dashboard</h5>
           <small>Monitor and manage compliance operations</small>
+          
         </div>
         <small className="px-2 py-1 rounded"
-          style={{ backgroundColor: "#B22222", color: "#fff" }}
+          style={{ backgroundColor: "#900603", color: "#fff" }}
         >
           ⏱ Last updated: {lastUpdated.toLocaleTimeString()}
         </small>
@@ -46,14 +50,14 @@ export default function Dashboard() {
         <style>
           {`
             .card-hover {
-              border: 1px solid #8B0000 !important;
+              border: 1px solid #900603 !important;
               transition: all 0.3s ease-in-out;
               background-color: #fff !important;
             }
             .card-hover:hover {
               transform: translateY(-6px) scale(1.02);
               box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-              border-color: #8B0000 !important;
+              border-color: #900603 !important;
               background-color: #fff !important;
             }
             .card-hover h6,
@@ -68,15 +72,15 @@ export default function Dashboard() {
               color: #111 !important;
             }
             .card-hover .btn {
-              background-color: #8B0000 !important;
+              background-color: #900603 !important;
               color: white !important;
               border: none !important;
               transition: all 0.3s ease-in-out;
             }
             .card-hover .btn:hover {
               background-color: white !important;
-              color: #8B0000 !important;
-              border: 1px solid #8B0000 !important;
+              color: #900603 !important;
+              border: 1px solid #900603 !important;
             }
           `}
         </style>
@@ -110,7 +114,7 @@ export default function Dashboard() {
               <strong>Recent Transactions</strong>
               <button
                 className="btn btn-sm"
-                style={{ border: "1px solid #8B0000", color: "#8B0000" }}
+                style={{ border: "1px solid #900603", color: "#900603" }}
                 onClick={() => navigate("transactions")}
               >
                 View All Transactions
@@ -148,7 +152,7 @@ export default function Dashboard() {
               <strong>System Alerts</strong>
               <button
                 className="btn btn-sm"
-                style={{ border: "1px solid #8B0000", color: "#8B0000" }}
+                style={{ border: "1px solid #900603", color: "#900603" }}
                 onClick={() => navigate("view-alerts")}
               >
                 Review Now
@@ -167,7 +171,7 @@ export default function Dashboard() {
                   </div>
                   <button
                     className="btn text-white btn-sm"
-                    style={{ backgroundColor: "#8B0000" }}
+                    style={{ backgroundColor: "#900603" }}
                     onClick={() => setViewingAlert(a)}
                   >
                     View Report

@@ -27,12 +27,12 @@ import {
  * - Service Requests
  * - API Keys & Integrations
  *
- * Theme color used: #8B0000
+ * Theme color used: #900603
  *
  * NOTE: This is demo/sample code and uses localStorage for persistence.
  */
 
-const THEME = "#8B0000";
+const THEME = "#900603";
 
 // tiny id generator
 const uid = (prefix = "") => `${prefix}${Date.now().toString(36)}${Math.floor(Math.random()*1000)}`;
@@ -235,7 +235,7 @@ export default function InvestmentPanel() {
       {/* NAVBAR */}
       <nav className="navbar navbar-expand-lg" style={{ backgroundColor: THEME }}>
         <div className="container-fluid">
-          <a className="navbar-brand text-white fw-bold" href="#">Beo Bank — Investment & Integrations</a>
+          <a className="navbar-brand text-white fw-bold" href="#">Neo Bank — Investment & Integrations</a>
           <div className="d-flex ms-auto">
             <button className="btn btn-sm btn-outline-light me-2" onClick={() => { setPage("reports"); setPageNo(1); }}>Reports</button>
             <button className="btn btn-sm btn-outline-light" onClick={() => { setPage("catalog"); setPageNo(1); }}>Catalog</button>
@@ -251,12 +251,67 @@ export default function InvestmentPanel() {
               <div className="card-body">
                 <h5 className="fw-bold" style={{ color: THEME }}>Modules</h5>
                 <ul className="list-group list-group-flush">
-                  <button className={`list-group-item list-group-item-action ${page==="catalog"?"active":""}`} onClick={()=>{setPage("catalog"); setPageNo(1);}}> <FaBoxOpen className="me-2" /> Product Catalog</button>
-                  <button className={`list-group-item list-group-item-action ${page==="subscriptions"?"active":""}`} onClick={()=>{setPage("subscriptions"); setPageNo(1);}}> <FaExchangeAlt className="me-2" /> Subscriptions/Redemptions</button>
-                  <button className={`list-group-item list-group-item-action ${page==="reports"?"active":""}`} onClick={()=>{setPage("reports"); setPageNo(1);}}> <FaChartBar className="me-2" /> Portfolio Reports</button>
-                  <button className={`list-group-item list-group-item-action ${page==="services"?"active":""}`} onClick={()=>{setPage("services"); setPageNo(1);}}> <FaCog className="me-2" /> Service Requests</button>
-                  <button className={`list-group-item list-group-item-action ${page==="apikeys"?"active":""}`} onClick={()=>{setPage("apikeys"); setPageNo(1);}}> <FaKey className="me-2" /> API Keys & Integrations</button>
-                </ul>
+  <button
+    className={`list-group-item list-group-item-action ${page === "catalog" ? "active" : ""}`}
+    style={{
+      backgroundColor: page === "catalog" ? "#900603" : "",
+      color: page === "catalog" ? "white" : "",
+      borderColor: page === "catalog" ? "#900603" : ""
+    }}
+    onClick={() => { setPage("catalog"); setPageNo(1); }}
+  >
+    <FaBoxOpen className="me-2" /> Product Catalog
+  </button>
+
+  <button
+    className={`list-group-item list-group-item-action ${page === "subscriptions" ? "active" : ""}`}
+    style={{
+      backgroundColor: page === "subscriptions" ? "#900603" : "",
+      color: page === "subscriptions" ? "white" : "",
+      borderColor: page === "subscriptions" ? "#900603" : ""
+    }}
+    onClick={() => { setPage("subscriptions"); setPageNo(1); }}
+  >
+    <FaExchangeAlt className="me-2" /> Subscriptions/Redemptions
+  </button>
+
+  <button
+    className={`list-group-item list-group-item-action ${page === "reports" ? "active" : ""}`}
+    style={{
+      backgroundColor: page === "reports" ? "#900603" : "",
+      color: page === "reports" ? "white" : "",
+      borderColor: page === "reports" ? "#900603" : ""
+    }}
+    onClick={() => { setPage("reports"); setPageNo(1); }}
+  >
+    <FaChartBar className="me-2" /> Portfolio Reports
+  </button>
+
+  <button
+    className={`list-group-item list-group-item-action ${page === "services" ? "active" : ""}`}
+    style={{
+      backgroundColor: page === "services" ? "#900603" : "",
+      color: page === "services" ? "white" : "",
+      borderColor: page === "services" ? "#900603" : ""
+    }}
+    onClick={() => { setPage("services"); setPageNo(1); }}
+  >
+    <FaCog className="me-2" /> Service Requests
+  </button>
+
+  <button
+    className={`list-group-item list-group-item-action ${page === "apikeys" ? "active" : ""}`}
+    style={{
+      backgroundColor: page === "apikeys" ? "#900603" : "",
+      color: page === "apikeys" ? "white" : "",
+      borderColor: page === "apikeys" ? "#900603" : ""
+    }}
+    onClick={() => { setPage("apikeys"); setPageNo(1); }}
+  >
+    <FaKey className="me-2" /> API Keys & Integrations
+  </button>
+</ul>
+
 
                 <hr />
                 <div>

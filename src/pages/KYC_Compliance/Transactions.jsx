@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FaExchangeAlt } from "react-icons/fa";
 
 export default function Transactions() {
-  // Dummy Transactions Data
   const dummyTransactions = [
     {
       id: "T001",
@@ -54,7 +53,6 @@ export default function Transactions() {
   const [viewingTxn, setViewingTxn] = useState(null);
   const itemsPerPage = 5;
 
-  // Filtering
   const filtered = transactions.filter(
     (t) =>
       (t.user.toLowerCase().includes(search.toLowerCase()) ||
@@ -63,22 +61,18 @@ export default function Transactions() {
       (filter === "All" || t.status === filter)
   );
 
-  // Sorting
   filtered.sort((a, b) =>
     sort === "latest" ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date)
   );
 
-  // Pagination
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
   const paginated = filtered.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
-  // Select toggles
   const toggleOne = (id) =>
     setSelected((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
   const toggleAll = () =>
     setSelected(selected.length === paginated.length ? [] : paginated.map((t) => t.id));
 
-  // Bulk Actions
   const bulkAction = (action) => {
     setTransactions((prev) =>
       prev.map((t) =>
@@ -103,7 +97,6 @@ export default function Transactions() {
     setSelected([]);
   };
 
-  // Add Note
   const addNote = (id, text) => {
     if (!text.trim()) return;
     setTransactions((prev) =>
@@ -130,31 +123,27 @@ export default function Transactions() {
 
   return (
     <div className="vh-100 d-flex flex-column" style={{ overflowX: "hidden" }}>
-      {/* Navbar */}
       <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#8B0000" }}>
         <div className="container-fluid">
           <a className="navbar-brand text-white fw-bold" href="#">
-            Beo Bank – All Transactions
+            Neo Bank – All Transactions
           </a>
         </div>
       </nav>
 
-      {/* Main Content */}
       <div className="flex-grow-1 overflow-auto p-4 bg-light">
         <div className="container-fluid">
-          {/* Heading */}
           <div className="card mb-4 shadow-sm rounded">
-            <div className="card-body d-flex align-items-center" style={{ backgroundColor: "#fff5f5" }}>
-              <FaExchangeAlt size={28} color="#8B0000" className="me-2" />
+            <div className="card-body d-flex align-items-center flex-wrap" style={{ backgroundColor: "#fff5f5" }}>
+              <FaExchangeAlt size={28} color="#8B0000" className="me-2 mb-1" />
               <h3 className="mb-0" style={{ color: "#8B0000" }}>
                 All Transactions
               </h3>
             </div>
           </div>
 
-          {/* Controls */}
-          <div className="row mb-3">
-            <div className="col-md-4 mb-2">
+          <div className="row g-2 mb-3">
+            <div className="col-12 col-md-4">
               <input
                 type="text"
                 className="form-control"
@@ -166,7 +155,7 @@ export default function Transactions() {
                 }}
               />
             </div>
-            <div className="col-md-3 mb-2">
+            <div className="col-12 col-md-3">
               <select
                 className="form-select"
                 value={filter}
@@ -181,27 +170,26 @@ export default function Transactions() {
                 <option value="Flagged">Flagged</option>
               </select>
             </div>
-            <div className="col-md-3 mb-2">
+            <div className="col-12 col-md-3">
               <select className="form-select" value={sort} onChange={(e) => setSort(e.target.value)}>
                 <option value="latest">Latest First</option>
                 <option value="oldest">Oldest First</option>
               </select>
             </div>
-            <div className="col-md-2 text-end mb-2">
-              <button className="btn btn-success" onClick={() => bulkAction("Completed")}>
-                Bulk Mark Completed
+            <div className="col-12 col-md-2 d-flex justify-content-md-end gap-2 mt-2 mt-md-0">
+              <button className="btn btn-success w-100 w-md-auto" onClick={() => bulkAction("Completed")}>
+                Bulk Completed
               </button>
               <button
-                className="btn btn-dark ms-2"
-                style={{ backgroundColor: "#8B0000" }}
+                className="btn text-white w-100 w-md-auto"
+                style={{ backgroundColor: "#fd7e14" }}
                 onClick={() => bulkAction("Flagged")}
               >
-                Bulk Flag
+                Bulk Flagged
               </button>
             </div>
           </div>
 
-          {/* Table */}
           <div className="table-responsive">
             <table className="table table-bordered table-hover text-center align-middle">
               <thead className="table-light">
@@ -236,7 +224,7 @@ export default function Transactions() {
                     <td>{t.date}</td>
                     <td>
                       <button
-                        className="btn btn-sm btn-primary"
+                        className="btn btn-sm text-white"
                         style={{ backgroundColor: "#8B0000" }}
                         onClick={() => setViewingTxn(t)}
                       >
@@ -249,8 +237,7 @@ export default function Transactions() {
             </table>
           </div>
 
-          {/* Pagination */}
-          <div className="d-flex justify-content-between align-items-center mt-3">
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 gap-2">
             <span>
               Page {page} of {totalPages}
             </span>
@@ -268,10 +255,9 @@ export default function Transactions() {
             </div>
           </div>
 
-          {/* Modal */}
           {viewingTxn && (
             <div className="modal show d-block" tabIndex="-1">
-              <div className="modal-dialog modal-lg modal-dialog-centered">
+              <div className="modal-dialog modal-xl modal-dialog-centered">
                 <div className="modal-content">
                   <div className="modal-header" style={{ backgroundColor: "#8B0000", color: "#fff" }}>
                     <h5 className="modal-title">Transaction {viewingTxn.id}</h5>
@@ -305,7 +291,7 @@ export default function Transactions() {
                         <div className="input-group mt-2">
                           <input type="text" className="form-control" placeholder="Add note..." id="txnNote"/>
                           <button
-                            className="btn btn-primary"
+                            className="btn text-white"
                             style={{ backgroundColor: "#8B0000" }}
                             onClick={() => {
                               const text = document.getElementById("txnNote").value;
@@ -318,26 +304,28 @@ export default function Transactions() {
                         </div>
                       </div>
                       <div className="tab-pane fade" id="auditTab">
-                        <table className="table table-bordered text-center">
-                          <thead className="table-light">
-                            <tr>
-                              <th>Date</th>
-                              <th>Action</th>
-                              <th>User</th>
-                              <th>Remark</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {viewingTxn.auditLogs.map((log) => (
-                              <tr key={log.id}>
-                                <td>{log.date}</td>
-                                <td>{log.action}</td>
-                                <td>{log.user}</td>
-                                <td>{log.remark}</td>
+                        <div className="table-responsive">
+                          <table className="table table-bordered text-center">
+                            <thead className="table-light">
+                              <tr>
+                                <th>Date</th>
+                                <th>Action</th>
+                                <th>User</th>
+                                <th>Remark</th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
+                            </thead>
+                            <tbody>
+                              {viewingTxn.auditLogs.map((log) => (
+                                <tr key={log.id}>
+                                  <td>{log.date}</td>
+                                  <td>{log.action}</td>
+                                  <td>{log.user}</td>
+                                  <td>{log.remark}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                       <div className="tab-pane fade" id="notesTab">
                         <ul className="list-group">
@@ -363,4 +351,3 @@ export default function Transactions() {
     </div>
   );
 }
-

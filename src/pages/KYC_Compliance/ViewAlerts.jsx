@@ -49,6 +49,10 @@ export default function ViewAlerts() {
   const [page, setPage] = useState(1);
   const [selectedAlerts, setSelectedAlerts] = useState([]);
   const [viewingAlert, setViewingAlert] = useState(null);
+
+  const [newNote, setNewNote] = useState("");
+  const [escalateReason, setEscalateReason] = useState("");
+
   const itemsPerPage = 5;
 
   const filteredAlerts = alerts.filter(
@@ -102,14 +106,14 @@ export default function ViewAlerts() {
     setSelectedAlerts([]);
   };
 
-  const addNote = (alertId, noteText) => {
-    if (!noteText.trim()) return;
+  const addNote = (alertId) => {
+    if (!newNote.trim()) return;
     setAlerts((prev) =>
       prev.map((a) =>
         a.alertId === alertId
           ? {
               ...a,
-              notes: [...(a.notes || []), noteText],
+              notes: [...(a.notes || []), newNote],
               auditLogs: [
                 ...a.auditLogs,
                 {
@@ -117,24 +121,25 @@ export default function ViewAlerts() {
                   action: "Note Added",
                   user: "Admin",
                   date: new Date().toLocaleString(),
-                  remark: noteText,
+                  remark: newNote,
                 },
               ],
             }
           : a
       )
     );
+    setNewNote("");
   };
 
-  const escalateAlert = (alertId, reason) => {
-    if (!reason.trim()) return;
+  const escalateAlert = (alertId) => {
+    if (!escalateReason.trim()) return;
     setAlerts((prev) =>
       prev.map((a) =>
         a.alertId === alertId
           ? {
               ...a,
               status: "Escalated",
-              note: reason,
+              note: escalateReason,
               auditLogs: [
                 ...a.auditLogs,
                 {
@@ -142,13 +147,14 @@ export default function ViewAlerts() {
                   action: "Escalated",
                   user: "Admin",
                   date: new Date().toLocaleString(),
-                  remark: reason,
+                  remark: escalateReason,
                 },
               ],
             }
           : a
       )
     );
+    setEscalateReason("");
   };
 
   const statusColor = (status) =>
@@ -163,16 +169,16 @@ export default function ViewAlerts() {
       {/* Navbar */}
       <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#8B0000" }}>
         <div className="container-fluid">
-          <a className="navbar-brand text-white fw-bold" href="#">
-            Beo Bank AML & Complaints
-          </a>
+          <span className="navbar-brand text-white fw-bold">
+            Neo Bank AML & Complaints
+          </span>
         </div>
       </nav>
 
       {/* Main Content */}
-      <div className="flex-grow-1 overflow-auto p-4 bg-light">
+      <div className="flex-grow-1 overflow-auto p-3 p-md-4 bg-light">
         <div className="container-fluid">
-          {/* Card-style heading */}
+          {/* Heading */}
           <div className="card mb-4 shadow-sm rounded">
             <div className="card-body d-flex align-items-center" style={{ backgroundColor: "#fff5f5" }}>
               <FaBell size={28} color="#8B0000" className="me-2" />
@@ -183,8 +189,8 @@ export default function ViewAlerts() {
           </div>
 
           {/* Controls */}
-          <div className="row mb-3">
-            <div className="col-md-4 mb-2">
+          <div className="row g-2 mb-3 align-items-center">
+            <div className="col-12 col-md-4">
               <input
                 type="text"
                 className="form-control"
@@ -196,7 +202,8 @@ export default function ViewAlerts() {
                 }}
               />
             </div>
-            <div className="col-md-3 mb-2">
+
+            <div className="col-6 col-md-2">
               <select
                 className="form-select"
                 value={filter}
@@ -211,7 +218,8 @@ export default function ViewAlerts() {
                 <option value="Escalated">Escalated</option>
               </select>
             </div>
-            <div className="col-md-3 mb-2">
+
+            <div className="col-6 col-md-2">
               <select
                 className="form-select"
                 value={sort}
@@ -221,11 +229,18 @@ export default function ViewAlerts() {
                 <option value="oldest">Oldest First</option>
               </select>
             </div>
-            <div className="col-md-2 text-end mb-2">
-              <button className="btn btn-success" onClick={() => bulkAction("Resolved")}>
+
+            <div className="col-12 col-md-4 d-flex flex-wrap gap-2 justify-content-md-end">
+              <button
+                className="btn btn-success flex-grow-1 flex-md-grow-0"
+                onClick={() => bulkAction("Resolved")}
+              >
                 Bulk Resolve
               </button>
-              <button className="btn btn-dark ms-2" style={{ backgroundColor: "#8B0000" }} onClick={() => bulkAction("Escalated")}>
+              <button
+                className="btn btn-danger flex-grow-1 flex-md-grow-0"
+                onClick={() => bulkAction("Escalated")}
+              >
                 Bulk Escalate
               </button>
             </div>
@@ -234,7 +249,7 @@ export default function ViewAlerts() {
           {/* Table */}
           <div className="table-responsive">
             <table className="table table-bordered table-hover text-center align-middle">
-              <thead className="table-light">
+              <thead style={{ backgroundColor: "#8B0000", color: "#fff" }}>
                 <tr>
                   <th>
                     <input
@@ -270,7 +285,7 @@ export default function ViewAlerts() {
                     <td>{a.note}</td>
                     <td>
                       <button
-                        className="btn btn-sm btn-primary"
+                        className="btn btn-sm text-white"
                         style={{ backgroundColor: "#8B0000" }}
                         onClick={() => setViewingAlert(a)}
                       >
@@ -284,15 +299,23 @@ export default function ViewAlerts() {
           </div>
 
           {/* Pagination */}
-          <div className="d-flex justify-content-between align-items-center mt-3">
-            <span>
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3">
+            <span className="mb-2 mb-md-0">
               Page {page} of {totalPages}
             </span>
             <div>
-              <button className="btn btn-outline-secondary me-2" disabled={page === 1} onClick={() => setPage(page - 1)}>
+              <button
+                className="btn btn-outline-secondary me-2"
+                disabled={page === 1}
+                onClick={() => setPage(page - 1)}
+              >
                 Prev
               </button>
-              <button className="btn btn-outline-secondary" disabled={page === totalPages} onClick={() => setPage(page + 1)}>
+              <button
+                className="btn btn-outline-secondary"
+                disabled={page === totalPages}
+                onClick={() => setPage(page + 1)}
+              >
                 Next
               </button>
             </div>
@@ -326,51 +349,76 @@ export default function ViewAlerts() {
                       </li>
                     </ul>
                     <div className="tab-content mt-3">
+                      {/* Info Tab */}
                       <div className="tab-pane fade show active" id="infoTab">
                         <p><strong>Alert ID:</strong> {viewingAlert.alertId}</p>
                         <p><strong>Type:</strong> {viewingAlert.type}</p>
                         <p><strong>Status:</strong> {viewingAlert.status}</p>
                         <p><strong>Note:</strong> {viewingAlert.note}</p>
                         <p><strong>Date:</strong> {viewingAlert.date}</p>
+
                         <div className="input-group mt-2">
-                          <input type="text" className="form-control" placeholder="Add note..." id="newNote"/>
-                          <button className="btn btn-primary" style={{ backgroundColor: "#8B0000" }} onClick={() => {
-                            const text = document.getElementById("newNote").value;
-                            addNote(viewingAlert.alertId, text);
-                            document.getElementById("newNote").value = "";
-                          }}>Add Note</button>
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Add note..."
+                            value={newNote}
+                            onChange={(e) => setNewNote(e.target.value)}
+                          />
+                          <button
+                            className="btn text-white"
+                            style={{ backgroundColor: "#8B0000" }}
+                            onClick={() => addNote(viewingAlert.alertId)}
+                          >
+                            Add Note
+                          </button>
                         </div>
+
                         <div className="input-group mt-2">
-                          <input type="text" className="form-control" placeholder="Escalate reason..." id="escalateReason"/>
-                          <button className="btn btn-danger" style={{ backgroundColor: "#8B0000" }} onClick={() => {
-                            const reason = document.getElementById("escalateReason").value;
-                            escalateAlert(viewingAlert.alertId, reason);
-                            document.getElementById("escalateReason").value = "";
-                          }}>Escalate</button>
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Escalate reason..."
+                            value={escalateReason}
+                            onChange={(e) => setEscalateReason(e.target.value)}
+                          />
+                          <button
+                            className="btn btn-danger text-white"
+                            style={{ backgroundColor: "#8B0000" }}
+                            onClick={() => escalateAlert(viewingAlert.alertId)}
+                          >
+                            Escalate
+                          </button>
                         </div>
                       </div>
+
+                      {/* Audit Trail */}
                       <div className="tab-pane fade" id="auditTab">
-                        <table className="table table-bordered">
-                          <thead className="table-light text-center">
-                            <tr>
-                              <th>Date</th>
-                              <th>Action</th>
-                              <th>User</th>
-                              <th>Remark</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {viewingAlert.auditLogs.map((log) => (
-                              <tr key={log.id} className="text-center">
-                                <td>{log.date}</td>
-                                <td>{log.action}</td>
-                                <td>{log.user}</td>
-                                <td>{log.remark}</td>
+                        <div className="table-responsive">
+                          <table className="table table-bordered text-center">
+                            <thead style={{ backgroundColor: "#8B0000", color: "#fff" }}>
+                              <tr>
+                                <th>Date</th>
+                                <th>Action</th>
+                                <th>User</th>
+                                <th>Remark</th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
+                            </thead>
+                            <tbody>
+                              {viewingAlert.auditLogs.map((log) => (
+                                <tr key={log.id}>
+                                  <td>{log.date}</td>
+                                  <td>{log.action}</td>
+                                  <td>{log.user}</td>
+                                  <td>{log.remark}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
+
+                      {/* Notes */}
                       <div className="tab-pane fade" id="notesTab">
                         <ul className="list-group">
                           {viewingAlert.notes.map((n, idx) => (
@@ -389,9 +437,9 @@ export default function ViewAlerts() {
               </div>
             </div>
           )}
+
         </div>
       </div>
     </div>
   );
 }
-
