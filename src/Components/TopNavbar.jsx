@@ -3,9 +3,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   Bell, LayoutDashboard, Users, FileText, CreditCard,
-  Wallet, DollarSign, HelpCircle, Settings, User
+  Wallet, DollarSign, HelpCircle, Settings, User,BarChart
 } from "lucide-react";
 import logo from "../assets/logo.png";
+
+
+
 
 const navItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
@@ -14,6 +17,8 @@ const navItems = [
   { title: "Transactions", url: "/transactions", icon: CreditCard },
   { title: "Deposit Management", url: "/DepositManagement", icon: Wallet },
   { title: "Loans", url: "/loans", icon: DollarSign },
+ { title: "Investment products", url: "/investment_products", icon: BarChart },
+
   { title: "Complaints & Support", url: "/complaints", icon: HelpCircle },
   { title: "Settings", url: "/settings", icon: Settings },
 ];
