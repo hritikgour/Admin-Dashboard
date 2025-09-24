@@ -1,0 +1,135 @@
+.site-footer {
+  background: linear-gradient(180deg, #ffffff, #f9f9f9);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding: 40px 20px;
+  margin-top: 50px;
+  font-size: 0.95rem;
+  color: #444;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Top Section */
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-logo img {
+  height: 55px;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,0.15));
+}
+
+.footer-logo h2 {
+  color: #950606;
+  font-size: 1.6rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Links */
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 35px;
+}
+
+.footer-col h4 {
+  color: #950606;
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.footer-col h4::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #950606;
+  margin-top: 5px;
+  border-radius: 2px;
+}
+
+.footer-col p {
+  margin: 6px 0;
+  cursor: pointer;
+  transition: color 0.25s, transform 0.2s;
+}
+
+.footer-col p:hover {
+  color: #a31414;
+  transform: translateX(4px);
+}
+
+/* Social Section */
+.footer-social {
+  margin-top: 40px;
+  text-align: center;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding-top: 25px;
+}
+
+.footer-social h4 {
+  margin-bottom: 14px;
+  font-size: 1.15rem;
+  color: #950606;
+  font-weight: 600;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s, background 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.15);
+  background: #950606;
+}
+
+.social-icons img {
+  width: 22px;
+  height: 22px;
+  /* filter: invert(20%) sepia(100%) saturate(800%) hue-rotate(345deg) brightness(90%) contrast(95%); */
+  transition: filter 0.3s;
+}
+
+.social-icons a:hover img {
+  filter: brightness(0) invert(1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-links {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+}
