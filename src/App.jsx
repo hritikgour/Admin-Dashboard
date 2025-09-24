@@ -3,6 +3,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HorizontalNav from "./Components/HorizontalNav";
 import TopNavbar from "./Components/TopNavbar";
+import AccountsDashboard from "./pages/AccountsDashboard/AccountsDashboard.jsx";
+
 
 function Dashboard() { return <h1>Dashboard Content</h1>; }
 function Users() { return <h1>Users Page</h1>; }
@@ -28,6 +30,7 @@ export default function App() {
           <Route path="/support" element={<Support />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/settings" element={<Settings />} />
+           <Route path="/AccountsDashboard" element={<AccountsDashboard />} />
         </Routes>
       </div>
     </Router>
