@@ -1,12 +1,13 @@
+/* src/Components/HorizontalNav.css */
+
 .horizontal-nav {
   display: flex;
-  background-color: white; /* same as top navbar */
+  background-color: white; /* Same as top navbar */
   padding: 10px 24px;
   gap: 12px;
-  /* border-bottom: 1px solid #5c0505; */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   position: sticky;
-  top: 60px; /* below top navbar */
+  top: 60px; /* Below top navbar */
   z-index: 900;
 }
 
@@ -19,16 +20,15 @@
   color: rgb(51, 45, 45);
   text-decoration: none;
   font-weight: 500;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .nav-link:hover {
   background-color: #a31b1b;
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
-
 
 .nav-icon {
   width: 18px;

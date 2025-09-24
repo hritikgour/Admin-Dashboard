@@ -3,13 +3,12 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #f8f8f8;
-  color: #222;
+  background-color: #f8f8f8; /* ✅ better light background */
+  color: #222; /* ✅ readable dark text */
 }
 
 /* Navbar fix */
 .horizontal-nav {
-  /* background-color: #780606; */
   border-bottom: 1px solid #ccc;
   padding: 10px 20px;
   position: sticky;
