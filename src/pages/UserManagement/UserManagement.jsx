@@ -15,7 +15,7 @@ import {
 import "bootstrap-icons/font/bootstrap-icons.css";
 import UserProfileModal from "./UserProfileModal";
 
-const PNB_PRIMARY_COLOR = "#950606";
+const PNB_PRIMARY_COLOR = "#900603";
 const PNB_ACCENT_COLOR = "#ff9800";
 
 const formatCurrency = (amount) => {

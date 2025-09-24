@@ -1,62 +1,31 @@
 import React, { useState } from "react";
-import { Button, Form, ListGroup, Card } from "react-bootstrap";
+import { Card, ListGroup, Form, Button } from "react-bootstrap";
 
-const TicketChat = ({ ticket, onSendMessage }) => {
-  const [message, setMessage] = useState("");
+export default function TicketChat({ ticket, onSendMessage }) {
+  const [msg, setMsg] = useState("");
 
-  const handleSend = () => {
-    if (message.trim() !== "") {
-      onSendMessage(ticket.id, message);
-      setMessage("");
-    }
-  };
+  const send = () => {
+    if(msg.trim()==="") return;
+    onSendMessage(ticket.id, msg);
+    setMsg("");
+  }
 
   return (
-    <Card className="shadow-sm">
-      <Card.Header>
-        <strong>Conversation with {ticket.user}</strong>
-      </Card.Header>
-      <Card.Body style={{ maxHeight: "400px", overflowY: "auto" }}>
+    <Card className="my-2">
+      <Card.Header>Conversation with {ticket.user}</Card.Header>
+      <Card.Body style={{ maxHeight: "200px", overflowY: "auto" }}>
         <ListGroup variant="flush">
-          {ticket.conversation.map((msg, index) => (
-            <ListGroup.Item
-              key={index}
-              className={`d-flex justify-content-${
-                msg.from === "admin" ? "end" : "start"
-              }`}
-            >
-              <div
-                className={`p-2 rounded ${
-                  msg.from === "admin"
-                    ? "bg-primary text-white"
-                    : "bg-light border"
-                }`}
-                style={{ maxWidth: "70%" }}
-              >
-                <small>{msg.text}</small>
-                <div className="text-muted" style={{ fontSize: "0.75rem" }}>
-                  {msg.time}
-                </div>
-              </div>
+          {ticket.messages.map((m,i)=>(
+            <ListGroup.Item key={i} className={m.sender==="User"?"":"text-end bg-light"}>
+              <b>{m.sender}:</b> {m.text}
             </ListGroup.Item>
           ))}
         </ListGroup>
       </Card.Body>
-      <Card.Footer>
-        <Form className="d-flex">
-          <Form.Control
-            type="text"
-            placeholder="Type a reply..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <Button variant="primary" className="ms-2" onClick={handleSend}>
-            Send
-          </Button>
-        </Form>
+      <Card.Footer className="d-flex">
+        <Form.Control type="text" placeholder="Type reply..." value={msg} onChange={e=>setMsg(e.target.value)} />
+        <Button className="ms-2" onClick={send}>Send</Button>
       </Card.Footer>
     </Card>
   );
-};
-
-export default TicketChat;
+}
