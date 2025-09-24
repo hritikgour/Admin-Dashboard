@@ -1,0 +1,243 @@
+/* ================== */
+/* Full Page Background */
+/* ================== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ================== */
+/* General container  */
+/* ================== */
+.card-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 25px;
+}
+
+.card-title {
+  text-align: center;
+  color: #222;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+/* ================== */
+/* Tabs               */
+/* ================== */
+.card-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.card-tabs button {
+  padding: 10px 20px;
+  margin: 0 8px;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+.card-tabs button.active {
+  background: #950606;
+  color: #fff;
+  font-weight: 600;
+}
+
+.card-tabs button:hover {
+  background: #950606;
+  color: #fff;
+}
+
+/* ================== */
+/* Forms              */
+/* ================== */
+.card-form,
+.fraud-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #444;
+  font-size: 14px;
+}
+
+/* Inputs / Select / Textarea */
+input,
+select,
+textarea {
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1.5px solid #ccc;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+  transition: border-color 0.3s ease;
+  width: 100%;  /* ✅ makes all input/select same size */
+  box-sizing: border-box;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #950606;
+  background: #fff;
+  box-shadow: none;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Submit Button */
+.btn-submit {
+  padding: 12px;
+  border: none;
+  background: #950606;
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
+  width: 100%; /* ✅ align with input/select width */
+}
+
+.btn-submit:hover {
+  background: #7a0505;
+}
+
+/* ================== */
+/* Notification       */
+/* ================== */
+.notification {
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.notification.safe {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.notification.escalate {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* ================== */
+/* Fraud Table        */
+/* ================== */
+.fraud-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.fraud-table th,
+.fraud-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.fraud-table th {
+  background: #950606;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 6px;
+}
+
+/* Row editing highlight */
+.fraud-table tr.editing input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  background-color: #fff8e1;
+  font-size: 14px;
+}
+
+/* Action Buttons */
+.fraud-btn {
+  padding: 6px 12px;
+  margin: 2px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.fraud-btn.safe {
+  background: #28a745;
+  color: #fff;
+}
+
+.fraud-btn.safe:hover {
+  background: #218838;
+}
+
+.fraud-btn.escalate {
+  background: #dc3545;
+  color: #fff;
+}
+
+.fraud-btn.escalate:hover {
+  background: #c82333;
+}
+
+.fraud-btn.save {
+  background-color: #28a745;
+  color: white;
+}
+
+.fraud-btn.cancel {
+  background-color: #dc3545;
+  color: white;
+}
+
+.fraud-btn.save:hover {
+  background-color: #218838;
+}
+
+.fraud-btn.cancel:hover {
+  background-color: #c82333;
+}
+
+/* Status Styling */
+.safe-status {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.escalate-status {
+  color: #dc3545;
+  font-weight: bold;
+}

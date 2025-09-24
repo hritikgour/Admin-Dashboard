@@ -1,10 +1,11 @@
-// src/components/AppNavbar.jsx
+// src/components/TopNavbar.jsx (merged)
 import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   Bell, LayoutDashboard, Users, FileText, CreditCard,
   Wallet, DollarSign, HelpCircle, Settings, Menu, User
 } from "lucide-react";
+import logo from "../assets/logo.png"; // ✅ Keep logo from khush_Dashboard
 
 const navItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
@@ -17,7 +18,7 @@ const navItems = [
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
-export default function AppNavbar() {
+export default function TopNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const location = useLocation();
@@ -41,12 +42,23 @@ export default function AppNavbar() {
   return (
     <>
       {/* Top Navbar */}
-      <nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top" style={{ zIndex: 1050 }}>
+      <nav
+        className="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top"
+        style={{ zIndex: 1050 }}
+      >
         <div className="container-fluid">
-          <Link to="/" className="navbar-brand d-flex align-items-center">
-            <span className="fw-bold fs-4 text-uppercase" style={{ color: "#950606" }}>NeoBank</span>
+          {/* ✅ Keep Logo + Brand Text */}
+          <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
+            <img src={logo} alt="NeoBank Logo" style={{ height: "32px" }} />
+            <span
+              className="fw-bold fs-4 text-uppercase"
+              style={{ color: "#950606" }}
+            >
+              NeoBank Admin
+            </span>
           </Link>
 
+          {/* Search */}
           <form className="d-none d-md-flex flex-grow-1 mx-md-3">
             <input
               type="text"
@@ -56,7 +68,9 @@ export default function AppNavbar() {
             />
           </form>
 
+          {/* Right side icons */}
           <div className="d-flex align-items-center ms-auto gap-3">
+            {/* Notifications */}
             <button className="btn position-relative d-none d-lg-block">
               <Bell size={22} />
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -65,7 +79,10 @@ export default function AppNavbar() {
             </button>
 
             {/* Profile Icon only */}
-            <div className="d-none d-lg-flex align-items-center position-relative" ref={profileRef}>
+            <div
+              className="d-none d-lg-flex align-items-center position-relative"
+              ref={profileRef}
+            >
               <button
                 className="btn border-0 bg-transparent"
                 onClick={() => setProfileMenuOpen(!profileMenuOpen)}
@@ -74,15 +91,37 @@ export default function AppNavbar() {
               </button>
 
               {profileMenuOpen && (
-                <div className="position-absolute end-0 mt-2 py-2 bg-white shadow rounded" style={{ minWidth: "150px", zIndex: 10000 }}>
-                  <Link to="/profile" className="dropdown-item px-3 py-2 text-dark hover-effect">Profile</Link>
-                  <Link to="/settings" className="dropdown-item px-3 py-2 text-dark hover-effect">Settings</Link>
-                  <Link to="/logout" className="dropdown-item px-3 py-2 text-dark hover-effect">Logout</Link>
+                <div
+                  className="position-absolute end-0 mt-2 py-2 bg-white shadow rounded"
+                  style={{ minWidth: "150px", zIndex: 10000 }}
+                >
+                  <Link
+                    to="/profile"
+                    className="dropdown-item px-3 py-2 text-dark hover-effect"
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    to="/settings"
+                    className="dropdown-item px-3 py-2 text-dark hover-effect"
+                  >
+                    Settings
+                  </Link>
+                  <Link
+                    to="/logout"
+                    className="dropdown-item px-3 py-2 text-dark hover-effect"
+                  >
+                    Logout
+                  </Link>
                 </div>
               )}
             </div>
 
-            <button className="btn d-md-none" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {/* Mobile menu toggle */}
+            <button
+              className="btn d-md-none"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
               <Menu size={24} />
             </button>
           </div>
@@ -90,7 +129,10 @@ export default function AppNavbar() {
       </nav>
 
       {/* Horizontal Menu */}
-      <div className="bg-light shadow-sm border-bottom d-none d-lg-block" style={{ marginTop: "70px" }}>
+      <div
+        className="bg-light shadow-sm border-bottom d-none d-lg-block"
+        style={{ marginTop: "70px" }}
+      >
         <div className="container-fluid d-flex flex-wrap gap-2 py-2">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -114,16 +156,19 @@ export default function AppNavbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="bg-white shadow-lg border-top d-lg-none" style={{
-          position: "absolute",
-          top: "70px",
-          left: 0,
-          right: 0,
-          zIndex: 9999,
-          borderRadius: "0 0 10px 10px",
-          overflow: "hidden",
-          animation: "slideDown 0.3s ease"
-        }}>
+        <div
+          className="bg-white shadow-lg border-top d-lg-none"
+          style={{
+            position: "absolute",
+            top: "70px",
+            left: 0,
+            right: 0,
+            zIndex: 9999,
+            borderRadius: "0 0 10px 10px",
+            overflow: "hidden",
+            animation: "slideDown 0.3s ease",
+          }}
+        >
           <div className="container-fluid py-3">
             {navItems.map((item) => {
               const Icon = item.icon;
