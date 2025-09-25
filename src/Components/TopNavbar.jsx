@@ -14,6 +14,7 @@ const navItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Users", url: "/users", icon: Users },
   { title: "KYC", url: "/kyc", icon: FileText },
+  { title: "Accounts & Wallets", url: "/AccountsDashboard", icon: Wallet },
   { title: "Transactions", url: "/transactions", icon: CreditCard },
   { title: "Deposit Management", url: "/DepositManagement", icon: Wallet },
   { title: "Loans", url: "/loans", icon: DollarSign },
