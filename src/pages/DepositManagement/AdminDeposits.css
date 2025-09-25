@@ -1,29 +1,39 @@
-/* General Container */
+/* =======================
+   General Container
+======================= */
 .admin-deposits {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 20px;
   background-color: #f5f5f5;
-  box-sizing: border-box;
   color: #333;
+  box-sizing: border-box;
 }
 
-/* Headings */
+/* =======================
+   Headings
+======================= */
 .admin-deposits h1 {
   font-size: 30px;
-  margin-bottom: 25px;
   font-weight: 700;
-  color: #950606;
+  margin: 0 0 25px 0;
+  padding: 18px;
+  background-color: #900603; /* rectangle color */
+  color: #fff; /* white text for contrast */
   text-align: center;
+  border-radius: 8px;
 }
+
 
 .admin-deposits h2 {
   font-size: 24px;
   margin: 20px 0 15px;
-  color: #333333;
   font-weight: 600;
+  color: #333;
 }
 
-/* Tabs */
+/* =======================
+   Tabs (Deposit / Maturities / Early Withdrawal)
+======================= */
 .tabs {
   display: flex;
   justify-content: center;
@@ -34,13 +44,13 @@
 
 .tabs button {
   padding: 10px 20px;
-  border: none;
+  border: 1px solid #950606;
+  background: #fff;
+  color: #950606;
   border-radius: 8px;
-  background-color: #e5e5e5;
-  color: #333;
-  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
 .tabs button.active {
@@ -48,11 +58,13 @@
   color: #fff;
 }
 
-.tabs button:not(.active):hover {
-  background-color: rgba(149, 6, 6, 0.1);
+.tabs button:hover {
+  opacity: 0.85;
 }
 
-/* Filters */
+/* =======================
+   Filters
+======================= */
 .filters {
   display: flex;
   justify-content: space-between;
@@ -68,7 +80,6 @@
   padding: 10px 14px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  outline: none;
   min-width: 250px;
   flex: 1;
   font-size: 14px;
@@ -78,13 +89,13 @@
   padding: 8px 14px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  outline: none;
   min-width: 180px;
 }
 
-/* Table Card */
-.table-card,
-section {
+/* =======================
+   Table Card (Wrapper)
+======================= */
+.table-card {
   width: 100%;
   padding: 20px;
   border-radius: 10px;
@@ -95,32 +106,40 @@ section {
   transition: box-shadow 0.3s ease;
 }
 
-.table-card:hover,
-section:hover {
+.table-card:hover {
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
-/* Tables */
+/* =======================
+   Tables
+======================= */
 table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: auto;
+  table-layout: fixed; /* Prevents resizing */
   font-size: 14px;
 }
 
+table, th, td {
+  border: 1px solid #ddd;
+}
+
 th, td {
-  padding: 16px 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 th {
   background-color: #f7f7f7;
+  font-weight: 600;
   color: #333;
   position: sticky;
   top: 0;
   z-index: 1;
-  font-weight: 600;
 }
 
 tbody tr:nth-child(even) {
@@ -131,7 +150,17 @@ tbody tr:hover {
   background-color: rgba(149, 6, 6, 0.05);
 }
 
-/* Status Badges */
+/* Fixed width for status & actions */
+td:nth-child(4), th:nth-child(4) {
+  min-width: 120px;
+}
+td:nth-child(5), th:nth-child(5) {
+  min-width: 240px;
+}
+
+/* =======================
+   Status Badges
+======================= */
 .status {
   padding: 5px 12px;
   border-radius: 20px;
@@ -146,39 +175,48 @@ tbody tr:hover {
 .status.closed { background: #d1ecf1; color: #0c5460; }
 .status.defaulted { background: #f5c6cb; color: #721c24; }
 
-/* Action Buttons */
-.action-buttons,
-.modal-actions {
+/* =======================
+   Action Buttons
+======================= */
+.action-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 10px;
 }
 
-button,
 .action-buttons button {
   padding: 8px 14px;
   border: none;
   border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
   background-color: #950606;
   color: #fff;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.2s, transform 0.1s;
 }
 
-button:hover,
 .action-buttons button:hover {
-  background-color: #7c0505;
+  background-color: #7a0505;
+  transform: translateY(-1px);
+}
+
+.action-buttons button:active {
+  transform: translateY(0);
 }
 
 button.approve { background-color: #950606; }
 button.reject { background-color: #b22222; }
 button.renew { background-color: #d9534f; }
-button.approve:hover { background-color: #7a0505; }
+button.generate { background-color: #4a90e2; }
+
 button.reject:hover { background-color: #8f1a1a; }
 button.renew:hover { background-color: #b0413e; }
+button.generate:hover { background-color: #357abd; }
 
-/* Pagination */
+/* =======================
+   Pagination
+======================= */
 .pagination {
   display: flex;
   gap: 8px;
@@ -194,7 +232,7 @@ button.renew:hover { background-color: #b0413e; }
   background-color: #fff;
   color: #950606;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: 0.2s;
 }
 
 .pagination button:hover {
@@ -213,7 +251,9 @@ button.renew:hover { background-color: #b0413e; }
   border-color: #950606;
 }
 
-/* Notification Banner */
+/* =======================
+   Notifications
+======================= */
 .notification {
   padding: 12px 18px;
   background-color: #fde2e2;
@@ -224,7 +264,9 @@ button.renew:hover { background-color: #b0413e; }
   font-weight: 600;
 }
 
-/* Modals */
+/* =======================
+   Modal
+======================= */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -239,7 +281,7 @@ button.renew:hover { background-color: #b0413e; }
 }
 
 .modal {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 25px;
   border-radius: 12px;
   width: 450px;
@@ -270,32 +312,25 @@ button.renew:hover { background-color: #b0413e; }
   min-height: 80px;
 }
 
-/* Search Bar */
-.search-bar {
-  width: 100%;
-  padding: 10px 14px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  transition: border-color 0.2s ease;
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
-.search-bar:focus {
-  border-color: #950606;
-  outline: none;
-}
-
-/* Animations */
+/* =======================
+   Animations
+======================= */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-20px);}
   to { opacity: 1; transform: translateY(0);}
 }
 
-/* Responsive */
+/* =======================
+   Responsive
+======================= */
 @media (max-width: 1200px) {
-  table th,
-  table td { padding: 12px 8px; font-size: 13px; }
+  th, td { padding: 10px 8px; font-size: 13px; }
 }
 
 @media (max-width: 992px) {
@@ -306,289 +341,92 @@ button.renew:hover { background-color: #b0413e; }
   table { display: block; overflow-x: auto; white-space: nowrap; }
   .tabs { flex-direction: column; gap: 8px; }
 }
-/* --- Tabs (side by side buttons) --- */
-.tabs {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+/* =======================
+   Responsive Enhancements
+======================= */
+
+/* Medium devices (≤1200px) */
+@media (max-width: 1200px) {
+  th, td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+  .filters input, .search-bar {
+    min-width: 200px;
+  }
 }
 
-.tabs button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  background-color: #e5e5e5;
-  color: #333;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* Tablets (≤992px) */
+@media (max-width: 992px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .filters input, .search-bar, .filters select {
+    width: 100%;
+    min-width: unset;
+  }
+  .tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .action-buttons {
+    justify-content: center;
+  }
 }
 
-.tabs button.active {
-  background-color: #950606;
-  color: #fff;
+/* Mobile (≤768px) */
+@media (max-width: 768px) {
+  .tabs {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  .action-buttons {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  .action-buttons button {
+    width: 100%; /* Full-width buttons on mobile */
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .admin-deposits h1 {
+    font-size: 24px;
+    padding: 14px;
+  }
+  .admin-deposits h2 {
+    font-size: 20px;
+  }
 }
 
-.tabs button:not(.active):hover {
-  background-color: rgba(149, 6, 6, 0.1);
-}
-
-/* --- Action Buttons (with spacing) --- */
-.action-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px; /* space between approve/reject/renew */
-}
-
-.action-buttons button {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  background-color: #950606;
-  color: #fff;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.action-buttons button:hover {
-  background-color: #7c0505;
-}
-
-/* Approve, Reject, Renew Variants */
-button.approve {
-  background-color: #950606;
-}
-
-button.approve:hover {
-  background-color: #7a0505;
-}
-
-button.reject {
-  background-color: #b22222;
-}
-
-button.reject:hover {
-  background-color: #8f1a1a;
-}
-
-button.renew {
-  background-color: #d9534f;
-}
-
-button.renew:hover {
-  background-color: #b0413e;
-}
-/* Add space only between buttons that are next to each other */
-button + button {
-  margin-left: 10px;
-}
-/* Prevent table resizing when status text changes */
-td:nth-child(4), th:nth-child(4) {
-  min-width: 120px;   /* Status column */
-  text-align: center;
-}
-
-td:nth-child(5), th:nth-child(5) {
-  min-width: 220px;   /* Actions column */
-}
-
-/* Existing notification styling */
-.notification {
-  padding: 12px 18px;
-  background-color: #fde2e2;
-  color: #950606;
-  margin-bottom: 20px;
-  border-left: 5px solid #950606;
-  border-radius: 5px;
-  font-weight: 600;
-}
-.admin-deposits {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f6f8fa;
-}
-
-/* Heading */
-.admin-deposits h1 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #1f2937;
-}
-
-/* Tabs */
-.tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.tabs button {
-  padding: 8px 16px;
-  border: 1px solid #950606;
-  background: #fff;
-  color: #950606;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.tabs button.active {
-  background: #950606;
-  color: #fff;
-}
-
-.tabs button:hover {
-  opacity: 0.85;
-}
-
-/* Section card */
-.table-card {
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  overflow-x: auto;
-}
-
-/* Notification */
-.notification {
-  padding: 10px 15px;
-  background-color: #d1fae5;
-  color: #065f46;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  font-weight: 600;
-}
-
-/* Table */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed; /* Prevents size shifting */
-}
-
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-th {
-  background-color: #f3f4f6;
-  font-weight: 600;
-}
-
-/* Status badges */
-.status {
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.status.pending {
-  background: #fef3c7;
-  color: #92400e;
-}
-
-.status.approved {
-  background: #d1fae5;
-  color: #065f46;
-}
-
-.status.rejected {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-/* Action Buttons (all in theme color) */
-.action-buttons {
-  display: flex;
-  gap: 8px;
-}
-
-.action-buttons button {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  background-color: #950606;
-  color: #fff;
-  transition: background 0.2s, transform 0.1s;
-}
-
-.action-buttons button:hover {
-  background-color: #7a0505;
-  transform: translateY(-1px);
-}
-
-.action-buttons button:active {
-  transform: translateY(0);
-}
-
-/* Modal */
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 400px;
-  max-width: 90%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.modal h3 {
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: #111827;
-}
-
-.modal input {
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 8px;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.modal-actions button {
-  padding: 6px 14px;
-  border-radius: 4px;
-}
-/* Simple table formatting */
-table, th, td {
-  border: 1px solid #ddd;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 8px;
-  text-align: center;
+/* Extra small devices (≤480px) */
+@media (max-width: 480px) {
+  .admin-deposits {
+    padding: 10px;
+  }
+  .admin-deposits h1 {
+    font-size: 20px;
+    padding: 12px;
+  }
+  .filters {
+    gap: 8px;
+  }
+  th, td {
+    font-size: 12px;
+    padding: 8px 6px;
+  }
+  .pagination {
+    justify-content: center;
+    gap: 5px;
+  }
+  .pagination button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
 }
