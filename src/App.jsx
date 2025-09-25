@@ -8,6 +8,7 @@ import UserManagement from "./pages/UserManagement/UserManagement";
 import ComplaintsLayout from "./pages/Complaints&Support/components/ComplaintsLayout";
 import InvestmentPanel from "./pages/Investment_products/components/InvestmentPanel";
 import KYCComplianceRoutes from "./pages/KYC_Compliance";
+import DepositManagement from "./pages/DepositManagement/AdminDeposits"
 
 // ✅ From khush_Dashboard branch
 import Dashboard from "./Components/Dashboard";
@@ -19,7 +20,7 @@ import Card from "./Components/Card";
 function KYC() { return <h1>KYC Page</h1>; }
 function Transactions() { return <h1>Transactions Page</h1>; }
 function Loans() { return <h1>Loans Page</h1>; }
-function DepositManagement() { return <h1>Deposit Management</h1>; }
+
 function Support() { return <h1>Support Page</h1>; }
 function Reports() { return <h1>Reports Page</h1>; }
 function Settings() { return <h1>Settings Page</h1>; }
