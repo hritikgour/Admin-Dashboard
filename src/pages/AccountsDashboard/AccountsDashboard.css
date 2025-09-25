@@ -521,3 +521,121 @@ tr:hover {
     padding: 8px;
   }
 }
+/* Fluid Typography */
+:root {
+  --fs-h1: clamp(20px, 3vw, 32px);
+  --fs-h5: clamp(16px, 2.5vw, 20px);
+  --fs-body: clamp(12px, 1.8vw, 14px);
+  --fs-small: clamp(10px, 1.5vw, 12px);
+}
+
+/* Apply fluid fonts */
+body, .app, .accounts-dashboard {
+  font-family: Arial, sans-serif;
+  font-size: var(--fs-body);
+}
+
+/* Header */
+.header h1 {
+  font-size: var(--fs-h1);
+}
+.header p {
+  font-size: var(--fs-body);
+}
+
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Table Fix for All Screens */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+table {
+  min-width: 700px; /* prevents cramped look */
+}
+
+/* Modal Responsiveness */
+.modal {
+  max-width: 90%;
+  width: 100%;
+}
+.modal-body .grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Buttons stack neatly */
+.modal-footer,
+.actions {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.modal-footer button,
+.actions button {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
+/* ✅ Extra Breakpoints */
+
+/* Laptops & Small Desktops */
+@media (max-width: 1200px) {
+  .summary-cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .modal-body .grid {
+    gap: 30px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+  .header {
+    padding: 15px;
+  }
+  .summary-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .filters-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+  .modal {
+    margin: 10px;
+    width: 100%;
+  }
+  .modal-footer {
+    flex-direction: column;
+  }
+}
+
+/* Small Mobiles */
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 18px;
+  }
+  .filters-container,
+  .card,
+  .modal-body {
+    padding: 15px;
+  }
+  .table-actions {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .table-actions button {
+    width: 100%;
+  }
+}
