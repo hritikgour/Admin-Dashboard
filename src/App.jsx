@@ -4,11 +4,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // ✅ Common imports
 import TopNavbar from "./Components/TopNavbar";
+
+// ✅ From sanket_Accounts_Wallets
+import AccountsDashboard from "./pages/AccountsDashboard/AccountsDashboard.jsx";
+
+// ✅ From main branch
 import UserManagement from "./pages/UserManagement/UserManagement";
 import ComplaintsLayout from "./pages/Complaints&Support/components/ComplaintsLayout";
 import InvestmentPanel from "./pages/Investment_products/components/InvestmentPanel";
 import KYCComplianceRoutes from "./pages/KYC_Compliance";
-import DepositManagement from "./pages/DepositManagement/AdminDeposits"
+import DepositManagement from "./pages/DepositManagement/AdminDeposits";
 
 // ✅ From khush_Dashboard branch
 import Dashboard from "./Components/Dashboard";
@@ -17,13 +22,24 @@ import SplashScreen from "./Components/SplashScreen";
 import Card from "./Components/Card";
 
 // ✅ Temporary placeholder components (so app won’t crash)
-function KYC() { return <h1>KYC Page</h1>; }
-function Transactions() { return <h1>Transactions Page</h1>; }
-function Loans() { return <h1>Loans Page</h1>; }
-
-function Support() { return <h1>Support Page</h1>; }
-function Reports() { return <h1>Reports Page</h1>; }
-function Settings() { return <h1>Settings Page</h1>; }
+function KYC() {
+  return <h1>KYC Page</h1>;
+}
+function Transactions() {
+  return <h1>Transactions Page</h1>;
+}
+function Loans() {
+  return <h1>Loans Page</h1>;
+}
+function Support() {
+  return <h1>Support Page</h1>;
+}
+function Reports() {
+  return <h1>Reports Page</h1>;
+}
+function Settings() {
+  return <h1>Settings Page</h1>;
+}
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -37,7 +53,7 @@ export default function App() {
       <TopNavbar />
 
       {/* Push content below navbar */}
-      <div style={{ }}>
+      <div>
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/users" element={<UserManagement />} />
@@ -50,6 +66,7 @@ export default function App() {
           <Route path="/support" element={<Support />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/AccountsDashboard" element={<AccountsDashboard />} />
           <Route path="/investment_products" element={<InvestmentPanel />} />
         </Routes>
       </div>
