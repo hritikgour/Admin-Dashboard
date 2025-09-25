@@ -233,7 +233,7 @@ export default function InvestmentPanel() {
   return (
     <div className="min-vh-100 bg-light">
       {/* NAVBAR */}
-      <nav className="navbar navbar-expand-lg" style={{ backgroundColor: THEME }}>
+      <nav className="navbar navbar-expand-lg py-4" style={{ backgroundColor: THEME }}>
         <div className="container-fluid">
           <a className="navbar-brand text-white fw-bold" href="#">Neo Bank — Investment & Integrations</a>
           <div className="d-flex ms-auto">

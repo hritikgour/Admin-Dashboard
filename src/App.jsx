@@ -14,6 +14,9 @@ import ComplaintsLayout from "./pages/Complaints&Support/components/ComplaintsLa
 import InvestmentPanel from "./pages/Investment_products/components/InvestmentPanel";
 import KYCComplianceRoutes from "./pages/KYC_Compliance";
 import DepositManagement from "./pages/DepositManagement/AdminDeposits";
+import Loans from "./pages/Loan/Loans.jsx";
+import MoneyTransferRequest from "./pages/MoneyTransferRequests/MoneyTransferRequests"
+import Reports from "./pages/Reports/Reports.jsx";
 
 // ✅ From khush_Dashboard branch
 import Dashboard from "./Components/Dashboard";
@@ -28,18 +31,15 @@ function KYC() {
 function Transactions() {
   return <h1>Transactions Page</h1>;
 }
-function Loans() {
-  return <h1>Loans Page</h1>;
-}
+
 function Support() {
   return <h1>Support Page</h1>;
-}
-function Reports() {
-  return <h1>Reports Page</h1>;
 }
 function Settings() {
   return <h1>Settings Page</h1>;
 }
+
+
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -62,16 +62,17 @@ export default function App() {
           <Route path="/loans" element={<Loans />} />
           <Route path="/DepositManagement" element={<DepositManagement />} />
           <Route path="/complaints" element={<ComplaintsLayout />} />
-          <Route path="/card" element={<Card />} />
+          <Route path="cards" element={<Card />} />
           <Route path="/support" element={<Support />} />
-          <Route path="/reports" element={<Reports />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/AccountsDashboard" element={<AccountsDashboard />} />
           <Route path="/investment_products" element={<InvestmentPanel />} />
+          <Route path="/moneyrequest" element={<MoneyTransferRequest />} />
+          <Route path="/reports" element={<Reports />} />
         </Routes>
       </div>
 
-      <Footer />
+      
     </Router>
   );
 }

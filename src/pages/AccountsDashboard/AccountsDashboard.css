@@ -14,24 +14,31 @@
   font-family: Arial, sans-serif;
 }
 
-/* Header */
+/* Reset default margin/padding for header to stick to navbar */
 .header {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #950606;
+  width: 100%;               /* full width */
+  margin: 0;                 /* no margin */
+  padding: 20px;             /* internal spacing */
+  background-color: #950606; /* dark red */
   color: white;
-  border-radius: 8px;
+  border-radius: 0;          /* remove rounding to stick with navbar edges */
+  box-sizing: border-box;
 }
+
+/* Header title */
 .header h1 {
   margin: 0 0 10px 0;
   font-size: 32px;
   font-weight: bold;
 }
+
+/* Header subtitle */
 .header p {
   margin: 0;
   opacity: 0.9;
   font-size: 16px;
 }
+
 
 /* Summary Cards */
 .summary-cards {

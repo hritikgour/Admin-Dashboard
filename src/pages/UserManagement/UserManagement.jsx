@@ -172,32 +172,30 @@ export default function UserManagement() {
   );
 
   return (
-    <div className="container-fluid p-3 p-md-4 bg-light">
-      <style>
-        {`
-          .pnb-pagination .page-item.active .page-link {
-            background-color: ${PNB_PRIMARY_COLOR};
-            border-color: ${PNB_PRIMARY_COLOR};
-            color: white;
-          }
-          .pnb-pagination .page-link {
-            color: ${PNB_PRIMARY_COLOR};
-          }
-        `}
-      </style>
+   <div className="container-fluid px-0">  {/* px-0 = remove container padding */}
+  <style>
+    {`
+      .pnb-pagination .page-item.active .page-link {
+        background-color: ${PNB_PRIMARY_COLOR};
+        border-color: ${PNB_PRIMARY_COLOR};
+        color: white;
+      }
+      .pnb-pagination .page-link {
+        color: ${PNB_PRIMARY_COLOR};
+      }
+    `}
+  </style>
 
-      <Card className="shadow-sm">
-        <Card.Header
-          style={{ backgroundColor: PNB_PRIMARY_COLOR, color: "white" }}
-          className="d-flex align-items-center"
-        >
-          <Image
-            src="src/assets/NeoBank_Logo_01.png"
-            style={{ width: "40px", marginRight: "15px" }}
-          />
-          <h4 className="mb-0">User Management Dashboard</h4>
-        </Card.Header>
-
+  <Card className="shadow-sm px-0 pt-0 w-100">
+    
+{/* Header */}
+      <div
+        className="py-4 text-center shadow-sm"
+        style={{ backgroundColor: "#960603" }}
+      >
+        <h1 className="fw-bold fs-2 text-white">User Management Dashboard</h1>
+        
+      </div>
         <Card.Body className="p-3">
           <Row className="mb-4 g-3">
             {[

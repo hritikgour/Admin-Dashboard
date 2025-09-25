@@ -1,159 +1,177 @@
-// src/components/TopNavbar.jsx
-import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import {
-  Bell, LayoutDashboard, Users, FileText, CreditCard,
-  Wallet, DollarSign, HelpCircle, Settings, User,BarChart
+  Bell, User, CreditCard, DollarSign, Repeat,
+  TrendingUp, Settings, AlertCircle, LayoutDashboard, Menu,
+  Users, FileText, Wallet, BarChart, HelpCircle
 } from "lucide-react";
-import logo from "../assets/logo.png";
+import { useEffect, useState } from "react";
+import logo from '../assets/logo.png';
 
-
-
-
-const navItems = [
-  { title: "Dashboard", url: "/", icon: LayoutDashboard },
-  { title: "Users", url: "/users", icon: Users },
-  { title: "KYC", url: "/kyc", icon: FileText },
-  { title: "Accounts & Wallets", url: "/AccountsDashboard", icon: Wallet },
-  { title: "Transactions", url: "/transactions", icon: CreditCard },
-  { title: "Deposit Management", url: "/DepositManagement", icon: Wallet },
-  { title: "Loans", url: "/loans", icon: DollarSign },
- { title: "Investment products", url: "/investment_products", icon: BarChart },
-
-  { title: "Complaints & Support", url: "/complaints", icon: HelpCircle },
-  { title: "Settings", url: "/settings", icon: Settings },
-];
-
-export default function TopNavbar() {
-  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+const TopNavbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [secondaryOpen, setSecondaryOpen] = useState(false);
   const location = useLocation();
-  const profileRef = useRef();
 
   useEffect(() => {
-    setProfileMenuOpen(false);
+    setMobileMenuOpen(false);
+    setSecondaryOpen(false);
   }, [location.pathname]);
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (profileRef.current && !profileRef.current.contains(event.target)) {
-        setProfileMenuOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  // 👇 ये हैं updated menuItems
+  const menuItems = [
+    { name: "Dashboard", icon: <LayoutDashboard size={18} />, path: "/" },
+    { name: "Users", icon: <Users size={18} />, path: "/users" },
+    { name: "KYC", icon: <FileText size={18} />, path: "/kyc" },
+    { name: "Accounts & Wallets", icon: <Wallet size={18} />, path: "/AccountsDashboard" },
+    { name: "Transactions", icon: <CreditCard size={18} />, path: "/transactions" },
+    { name: "Money Transfer Request", icon: <CreditCard size={18} />, path: "/moneyrequest" },
+    { name: "Deposit Management", icon: <Wallet size={18} />, path: "/DepositManagement" },
+    { name: "Loans", icon: <DollarSign size={18} />, path: "/loans" },
+    { name: "Cards", icon: <DollarSign size={18} />, path: "/cards" },
+    { name: "Investment Products", icon: <BarChart size={18} />, path: "/investment_products" },
+    { name: "Complaints & Support", icon: <HelpCircle size={18} />, path: "/complaints" },
+     { name: "Reports & analytics", icon: <HelpCircle size={18} />, path: "/reports" },
+   
+  ];
 
   return (
     <>
-      {/* Top Navbar */}
-      <nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top" style={{ zIndex: 1050 }}>
+      {/* 🔝 Top Navbar */}
+      <nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
         <div className="container-fluid">
-          {/* ✅ Logo + Brand */}
-          <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
-            <img src={logo} alt="NeoBank Logo" style={{ height: "32px" }} />
-            <span className="fw-bold fs-4 text-uppercase" style={{ color: "#950606" }}>
-              NeoBank Admin
+          <Link to="/homepage" className="navbar-brand d-flex align-items-center fw-bold">
+            <img
+              src={logo}
+              alt="NeoBank Logo"
+              style={{ height: "40px", width: "40px", objectFit: "contain" }}
+            />
+            <span
+              className="ms-2 fw-bold fs-4 text-uppercase"
+              style={{ color: "#950606" }}
+            >
+              NeoBank
             </span>
           </Link>
 
-          {/* Search */}
-          <form className="d-none d-md-flex flex-grow-1 mx-md-3">
+          <form className="d-none d-md-flex flex-grow-1 mx-md-3 ">
             <input
               type="text"
               className="form-control"
-              style={{ maxWidth: "500px", marginLeft: "30px" }}
+              style={{ maxWidth: "500px", marginLeft: '30px' }}
               placeholder="Search users, transactions..."
             />
           </form>
 
-          {/* Right side */}
-          <div className="d-flex align-items-center ms-auto gap-3">
-            {/* Notifications */}
-            <button className="btn position-relative">
+          <div className="d-flex align-items-center ms-auto flex-wrap flex-sm-nowrap">
+            <button className="btn position-relative me-3 d-none d-lg-block">
               <Bell size={22} />
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 3
               </span>
             </button>
-
-            {/* Profile */}
-            <div className="d-flex align-items-center position-relative" ref={profileRef}>
+            <div className="d-flex align-items-center">
+              <span className="fw-bold me-2">JD</span>
               <button
-                className="btn border-0 bg-transparent"
-                onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+                className="navbar-toggler"
+                type="button"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
-                <User size={22} className="text-secondary" />
+                <Menu size={24} />
               </button>
-
-              {profileMenuOpen && (
-                <div
-                  className="position-absolute end-0 mt-2 py-2 bg-white shadow rounded"
-                  style={{ minWidth: "150px", zIndex: 10000 }}
-                >
-                  <Link to="/profile" className="dropdown-item px-3 py-2 text-dark hover-effect">
-                    Profile
-                  </Link>
-                  <Link to="/settings" className="dropdown-item px-3 py-2 text-dark hover-effect">
-                    Settings
-                  </Link>
-                  <Link to="/logout" className="dropdown-item px-3 py-2 text-dark hover-effect">
-                    Logout
-                  </Link>
-                </div>
-              )}
             </div>
           </div>
         </div>
       </nav>
 
-      {/* ✅ Horizontal Menu (same for mobile + desktop) */}
-      <div
-        className="bg-light shadow-sm border-bottom"
-        style={{ marginTop: "70px" }}
-      >
-        <div
-          className="container-fluid d-flex flex-nowrap gap-2 py-2 overflow-x-auto"
-          style={{ scrollbarWidth: "thin" }}
-        >
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <NavLink
-                key={item.title}
-                to={item.url}
-                className={({ isActive }) =>
-                  `d-flex align-items-center gap-1 px-3 py-2 rounded fw-semibold text-decoration-none nav-hover ${
-                    isActive ? "bg-danger text-white" : "text-dark"
-                  }`
-                }
-              >
-                <Icon size={18} />
-                <span className="d-none d-sm-inline">{item.title}</span>
-              </NavLink>
-            );
-          })}
-        </div>
+      {/* 📌 Secondary Navbar */}
+      <div className="bg-light shadow-sm border-top mt-3 d-none d-lg-block">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm border-bottom border-dark mt-5">
+          <div className="container-fluid">
+            <div className={`navbar-collapse ${secondaryOpen ? "show" : ""}`} id="secondaryNav">
+              <ul className="navbar-nav mx-auto flex-wrap gap-1">
+                {menuItems.map((item) => (
+                  <li className="nav-item" key={item.name}>
+                    <NavLink
+                      to={item.path}
+                      className={({ isActive }) =>
+                        `nav-link nav-hover d-flex align-items-center fw-semi-bold px-2 py-1 rounded`
+                      }
+                      style={({ isActive }) => ({
+                        backgroundColor: isActive ? "#950606" : "transparent",
+                        color: isActive ? "white" : "#333",
+                        transition: "all 0.3s ease",
+                      })}
+                      onClick={() => setSecondaryOpen(true)}
+                    >
+                      <span className="me-2">{item.icon}</span>
+                      {item.name}
+                    </NavLink>
+                  </li>
+                ))}
+                <style>
+                  {`
+                    .nav-hover:hover {
+                      background-color: #950606 !important;
+                      color: #fff !important;
+                    }
+                  `}
+                </style>
+              </ul>
+            </div>
+          </div>
+        </nav>
       </div>
 
-      {/* Hover effect */}
-      <style>
-        {`
-          .nav-hover:hover, .hover-effect:hover {
-            background-color: #900603 !important;
-            color: white !important;
-            transition: all 0.3s ease;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-          }
-          .container-fluid::-webkit-scrollbar {
-            height: 6px;
-          }
-          .container-fluid::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 10px;
-          }
-        `}
-      </style>
+      {/* 📱 Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="bg-light shadow-lg border-top d-lg-none"
+          style={{
+            position: 'absolute',
+            top: '70px',
+            left: 0,
+            right: 0,
+            zIndex: 9999,
+            borderRadius: '0 0 10px 10px',
+            borderTop: '2px solid black',
+            borderBottom: '2px solid black',
+            overflow: 'hidden',
+            animation: 'slideDown 0.3s ease'
+          }}>
+          <div className="container-fluid py-3">
+            <ul className="nav flex-column">
+              {menuItems.map((item) => (
+                <li className="nav-item mb-2" key={item.name}>
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `nav-link d-flex align-items-center fw-semibold px-3 py-2 rounded shadow-sm`
+                    }
+                    style={({ isActive }) => ({
+                      backgroundColor: isActive ? "#E0E0E0" : "#fff",
+                      color: isActive ? "#000" : "#333",
+                      transition: "all 0.3s ease",
+                    })}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span className="me-3">{item.icon}</span>
+                    {item.name}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <style>
+            {`
+              @keyframes slideDown {
+                0% { transform: translateY(-20px); opacity: 0; }
+                100% { transform: translateY(0); opacity: 1; }
+              }
+            `}
+          </style>
+        </div>
+      )}
     </>
   );
-}
+};
+
+export default TopNavbar;

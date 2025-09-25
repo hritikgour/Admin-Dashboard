@@ -204,6 +204,7 @@ const AccountsDashboard = () => {
 
   return (
     <div className="accounts-dashboard">
+
       {/* Header */}
       <div className="header">
         <h1>Accounts & Wallets</h1>

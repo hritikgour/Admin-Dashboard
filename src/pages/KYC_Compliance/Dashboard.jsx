@@ -26,9 +26,11 @@ export default function Dashboard() {
 
   return (
     <div className="container-fluid p-0">
+
+
       {/* Header */}
       <div
-       className="p-4 mb-4 rounded text-white shadow-lg d-flex justify-content-between align-items-center flex-wrap"
+       className="py-4 rounded text-white shadow-lg d-flex justify-content-between align-items-center flex-wrap "
         style={{ border: "2px solid #f8e4e4ff", backgroundColor: "#900603" }}
       >
         <div>
