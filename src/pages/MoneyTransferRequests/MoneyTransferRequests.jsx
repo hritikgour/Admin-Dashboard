@@ -150,9 +150,8 @@ const MoneyTransferRequests = () => {
   });
 
   return (
-    <div className="container">
- 
- {/* Header */}
+<>
+   {/* Header */}
       <div
         className="py-4 text-center shadow-sm"
         style={{ backgroundColor: "#960603" }}
@@ -163,6 +162,9 @@ const MoneyTransferRequests = () => {
 
 
 
+    <div className="container">
+ 
+ 
 
       {/* Tabs */}
       <div className="tabs">
@@ -526,6 +528,7 @@ const MoneyTransferRequests = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

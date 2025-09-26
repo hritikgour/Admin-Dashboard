@@ -186,9 +186,7 @@ export default function UserManagement() {
     `}
   </style>
 
-  <Card className="shadow-sm px-0 pt-0 w-100">
-    
-{/* Header */}
+  {/* Header */}
       <div
         className="py-4 text-center shadow-sm"
         style={{ backgroundColor: "#960603" }}
@@ -196,6 +194,9 @@ export default function UserManagement() {
         <h1 className="fw-bold fs-2 text-white">User Management Dashboard</h1>
         
       </div>
+
+  <Card className="shadow-sm px-0 pt-0 w-100">
+    
         <Card.Body className="p-3">
           <Row className="mb-4 g-3">
             {[

@@ -203,13 +203,16 @@ const AccountsDashboard = () => {
   };
 
   return (
-    <div className="accounts-dashboard">
-
+<>
       {/* Header */}
       <div className="header">
         <h1>Accounts & Wallets</h1>
         <p>Manage customer accounts, wallets, and financial operations</p>
       </div>
+
+
+    <div className="accounts-dashboard">
+    
 
       {/* Summary Cards */}
       <div className="summary-cards">
@@ -549,6 +552,7 @@ const AccountsDashboard = () => {
         </div>
       )}
     </div>
+    /</>
   );
 };
 
